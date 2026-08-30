@@ -90,21 +90,21 @@ class S3Service
     * Listar todos los archivos del bucket
     */
     public function listFiles(): array
-{
-    try {
-        $result = $this->s3->listObjectsV2([
-            'Bucket' => $this->bucket,
-        ]);
+    {
+        try {
+            $result = $this->s3->listObjectsV2([
+                'Bucket' => $this->bucket,
+            ]);
 
-        $files = [];
-        if (isset($result['Contents'])) {
-            foreach ($result['Contents'] as $object) {
-                $files[] = $object['Key'];
+            $files = [];
+            if (isset($result['Contents'])) {
+                foreach ($result['Contents'] as $object) {
+                    $files[] = $object['Key'];
+                }
             }
+            return $files;
+        } catch (AwsException $e) {
+            throw new Exception("Error al listar archivos: " . $e->getMessage());
         }
-        return $files;
-    } catch (AwsException $e) {
-        throw new Exception("Error al listar archivos: " . $e->getMessage());
     }
-}
 }
