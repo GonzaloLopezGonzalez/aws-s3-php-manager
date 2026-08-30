@@ -36,6 +36,8 @@ Internamente utiliza el cliente oficial de AWS (`Aws\S3\S3Client`) y lee las cre
 - Descargar archivos del bucket a una ruta local.
 - Eliminar objetos del bucket.
 - Listar todos los archivos existentes en el bucket.
+- Crear buckets
+- Listar buckets
 
 ---
 
@@ -55,4 +57,6 @@ class S3Service
     public function download(...) { ... }
     public function delete(...) { ... }
     public function listFiles() { ... }
+    public function createBucket(...) { ... }
+    public function listBuckets() { ... }
 }
